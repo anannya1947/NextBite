@@ -1,0 +1,13 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "--build-arg"
+      - "NEXT_PUBLIC_API_URL=${_API_URL}"
+      - "-t"
+      - "us-central1-docker.pkg.dev/nextbite-demo/cloud-run-source-deploy/nextbite-frontend:latest"
+      - "."
+images:
+  - "us-central1-docker.pkg.dev/nextbite-demo/cloud-run-source-deploy/nextbite-frontend:latest"
+options:
+  logging: CLOUD_LOGGING_ONLY

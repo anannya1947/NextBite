@@ -4,8 +4,26 @@ from app.config import settings
 
 logger = logging.getLogger(__name__)
 
+_auth_checked = False
+_has_auth = False
+
+def _check_gcp_auth() -> bool:
+    global _auth_checked, _has_auth
+    if _auth_checked:
+        return _has_auth
+    try:
+        import google.auth
+        google.auth.default()
+        _has_auth = True
+    except Exception:
+        _has_auth = False
+    _auth_checked = True
+    return _has_auth
+
 def get_bigquery_client():
     """Attempts to create a BigQuery client. Returns None if unavailable."""
+    if not _check_gcp_auth():
+        return None
     try:
         from google.cloud import bigquery
         return bigquery.Client(project=settings.PROJECT_ID)

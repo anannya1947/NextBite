@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     BIGQUERY_DATASET: str = "nextbite"
     FIRESTORE_DATABASE: str = "(default)"
     GEMINI_API_KEY: str = ""
-    GEMINI_MODEL: str = "gemini-2.5-flash"
+    GEMINI_MODEL: str = "gemini-flash-latest"
     PORT: int = 8080
     HOST: str = "0.0.0.0"
     CORS_ORIGINS: List[str] = [
@@ -21,7 +21,8 @@ class Settings(BaseSettings):
         "http://localhost:8080",
         "http://127.0.0.1:8080",
         "https://nextbite-demo-737c0.web.app",
-        "https://nextbite-demo-737c0.firebaseapp.com"
+        "https://nextbite-demo-737c0.firebaseapp.com",
+        "https://nextbite-frontend-1059896982978.us-central1.run.app"
     ]
 
     model_config = {
